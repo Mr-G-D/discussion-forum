@@ -1,5 +1,6 @@
 <template class="flex align-middle justify-center">
-  <div
+  <form
+    @submit="handleSubmit"
     class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xl m-10 md:m-auto flex flex-col justify-center align-middle"
   >
     <div class="mb-4">
@@ -10,6 +11,7 @@
         Username
       </label>
       <input
+        v-model="username"
         class="shadow appearance-none border rounded py-2 px-3 text-grey-darker"
         id="username"
         type="text"
@@ -24,6 +26,7 @@
         Password
       </label>
       <input
+        v-model="password"
         class="shadow appearance-none border border-red rounded py-2 px-3 text-grey-darker mb-3"
         id="password"
         type="password"
@@ -40,18 +43,39 @@
       </a>
       <button
         class="bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded m-2"
-        type="button"
+        type="submit"
       >
         Sign In
       </button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
 export default {
   name: "SignIn",
   components: {},
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+
+      if (!this.username) {
+        alert("Please enter username");
+        return false;
+      }
+      if (!this.password) {
+        alert("Please enter password");
+        return false;
+      }
+      window.location.href = "/";
+    },
+  },
 };
 </script>
 
