@@ -1,5 +1,7 @@
 <template>
-  <section class="text-gray-600 body-font overflow-hidden bg-white rounded-xl">
+  <section
+    class="text-gray-600 body-font overflow-hidden bg-white rounded-xl my-8"
+  >
     <div class="container px-5 py-11 mx-auto">
       <div class="-my-8 divide-y-2 divide-gray-100">
         <div
@@ -9,24 +11,17 @@
             class="md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col items-center"
           >
             <div class="rounded-full w-16">
-              <img
-                src="https://i.pravatar.cc/300/img=2"
-                class="rounded-full"
-                alt="avatar"
-              />
+              <img :src="getImageUrl()" class="rounded-full" alt="avatar" />
             </div>
 
             <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
           </div>
           <div class="md:flex-grow">
             <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
-              Bitters hashtag waistcoat fashion axe chia unicorn
+              {{ data.title }}
             </h2>
             <p class="leading-relaxed">
-              Glossier echo park pug, church-key sartorial biodiesel
-              vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon
-              party messenger bag selfies, poke vaporware kombucha lumbersexual
-              pork belly polaroid hoodie portland craft beer.
+              {{ data.body }}
             </p>
             <a class="text-indigo-500 inline-flex items-center mt-4"
               >Learn More
@@ -53,6 +48,13 @@
 <script>
 export default {
   name: "CardVue",
+  props: ["data"],
+  methods: {
+    getImageUrl() {
+      const path = "https://i.pravatar.cc/300/img=" + this.data.id;
+      return path;
+    },
+  },
 };
 </script>
 
