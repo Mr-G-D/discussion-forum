@@ -1,7 +1,8 @@
 <template>
   <LayoutVue>
-    <div class="bg-white p-6 rounded-xl h-96">
-      <QuillEditor class="h-72" theme="snow" toolbar="essential" />
+    <CardVue :data="discussion" />
+    <div class="bg-white p-6 rounded-xl h-48">
+      <QuillEditor class="h-28" theme="snow" toolbar="essential" />
     </div>
     <!-- <div v-for="element in data" :key="element.id"> -->
     <CommentVue :data="data" />
@@ -15,6 +16,8 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import LayoutVue from "../../../Layouts";
 import CommentVue from "./Comment.vue";
 import { axiosGet } from "@/api";
+import { useRoute } from "vue-router";
+import CardVue from "../Card.vue";
 
 export default {
   name: "CommentsVue",
@@ -22,15 +25,23 @@ export default {
     QuillEditor,
     LayoutVue,
     CommentVue,
+    CardVue,
   },
   data() {
     return {
       data: null,
+      id: null,
+      discussion: null,
     };
   },
   async mounted() {
-    const comment = await axiosGet("comments/1");
+    const id = useRoute();
+    this.id = id.params.id;
+    const comment = await axiosGet(`comments/${this.id}`);
     this.data = comment;
+
+    const discussion = await axiosGet(`posts/${this.id}`);
+    this.discussion = discussion;
   },
 };
 </script>
