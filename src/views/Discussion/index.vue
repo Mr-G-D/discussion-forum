@@ -1,18 +1,22 @@
 <template>
-  <HeaderVue />
-  <QuillEditor theme="snow" toolbar="full" />
+  <LayoutVue>
+    <!-- <QuillEditor class="bg-white" theme="snow" toolbar="full" /> -->
+    <CardVue />
+  </LayoutVue>
 </template>
 
 <script>
-import HeaderVue from "../../Layouts/Header.vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import LayoutVue from "../../Layouts";
+// import { QuillEditor } from "@vueup/vue-quill";
+// import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import CardVue from "./Card.vue";
 
 export default {
   name: "DiscussionVue",
   components: {
-    HeaderVue,
-    QuillEditor,
+    LayoutVue,
+    // QuillEditor,
+    CardVue,
   },
 };
 </script>
