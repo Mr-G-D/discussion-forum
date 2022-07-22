@@ -8,13 +8,15 @@
           class="py-8 flex flex-wrap md:flex-nowrap text-center md:text-left justify-center"
         >
           <div
-            class="md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col items-center"
+            class="md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col items-center m-3"
           >
             <div class="rounded-full w-16">
               <img :src="getImageUrl()" class="rounded-full" alt="avatar" />
             </div>
 
-            <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
+            <span class="mt-1 text-gray-500 text-sm whitespace-nowrap">{{
+              name
+            }}</span>
           </div>
           <div class="md:flex-grow">
             <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
@@ -46,12 +48,22 @@
 </template>
 
 <script>
+import { axiosGet } from "@/api";
 export default {
   name: "CardVue",
   props: ["data"],
+  data() {
+    return {
+      name: null,
+    };
+  },
+  async mounted() {
+    const { firstName, lastName } = await axiosGet("users/" + this.data.userId);
+    this.name = firstName + " " + lastName;
+  },
   methods: {
     getImageUrl() {
-      const path = "https://i.pravatar.cc/300/img=" + this.data.id;
+      const path = "https://i.pravatar.cc/300/img=" + this.data.userId;
       return path;
     },
   },
