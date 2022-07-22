@@ -2,7 +2,7 @@
   <LayoutVue>
     <CardVue :data="discussion" />
     <div class="bg-white p-6 rounded-xl h-48">
-      <QuillEditor class="h-28" theme="snow" toolbar="essential" />
+      <QuillEditor class="sm:h-28 h-12" theme="snow" toolbar="essential" />
     </div>
     <!-- <div v-for="element in data" :key="element.id"> -->
     <CommentVue :data="data" />
