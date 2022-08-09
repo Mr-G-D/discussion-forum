@@ -1,8 +1,13 @@
 <template>
   <LayoutVue>
     <CardVue :data="discussion" />
-    <div class="bg-white p-6 rounded-xl h-48">
+    <div class="bg-white p-6 rounded-xl h-58 flex justify-between flex-col">
       <QuillEditor class="sm:h-28 h-12" theme="snow" toolbar="essential" />
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded"
+      >
+        Post
+      </button>
     </div>
     <!-- <div v-for="element in data" :key="element.id"> -->
     <CommentVue :data="data" />

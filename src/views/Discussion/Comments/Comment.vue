@@ -9,7 +9,7 @@
           class="py-8 flex flex-wrap md:flex-nowrap text-center md:text-left justify-center"
         >
           <div
-            class="md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col items-center"
+            class="md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col items-center m-3"
           >
             <div class="rounded-full w-16">
               <img :src="getImageUrl()" class="rounded-full" alt="avatar" />
