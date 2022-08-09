@@ -1,6 +1,15 @@
 <template>
   <LayoutVue>
-    <div v-for="element in data" :key="element.id">
+    <div class="relative mr-6 my-2">
+      <input
+        v-model="search"
+        type="search"
+        class="bg-purple-white shadow rounded border-0 p-3"
+        placeholder="Search 🔎"
+      />
+      <div class="absolute pin-r pin-t mt-3 mr-4 text-purple-lighter"></div>
+    </div>
+    <div v-for="element in filteredPosts" :key="element.id">
       <router-link :to="'discussion/' + element.id">
         <CardVue :data="element" />
       </router-link>
@@ -21,12 +30,24 @@ export default {
   },
   data() {
     return {
+      search: "",
       data: null,
     };
   },
-  async mounted() {
+  async created() {
     const { posts } = await axiosGet("posts");
     this.data = posts;
+  },
+
+  computed: {
+    filteredPosts() {
+      return this.data?.filter((data) => {
+        return (
+          data.body.toLowerCase().includes(this.search.toLowerCase()) ||
+          data.title.toLowerCase().includes(this.search.toLowerCase())
+        );
+      });
+    },
   },
 };
 </script>
